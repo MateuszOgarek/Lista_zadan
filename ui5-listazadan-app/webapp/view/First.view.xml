@@ -1,0 +1,27 @@
+<mvc:View controllerName="in.sijas.todolist.controller.First"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <List id="idList" items="{mTodo>/todo_list}" mode="Delete" delete="deleteTodo">
+                <headerToolbar>
+                    <Toolbar id="idListTb">
+                        <Title text="What to Complete?"/>
+                        <ToolbarSpacer />
+                        <Button icon="sap-icon://add" text="Create" press="createTodo"/>
+                    </Toolbar>
+                </headerToolbar>
+                <CustomListItem visible="{=${mTodo>status}===0}">
+                    <HBox class="sapUiSmallMargin" justifyContent="SpaceBetween" alignItems="Center">
+                        <VBox>
+                            <Label text="{mTodo>title}"/>
+                            <Text text="{mTodo>description}"/>
+                        </VBox>
+                        <ObjectStatus text="{path:'mTodo>targetDate', type: 'sap.ui.model.type.Date'}" state="{path:'mTodo>targetDate',formatter : '.formatter.formatDate'}"/>
+                        <Button icon="sap-icon://accept" text="Complete" press="setToComplete"/>
+                    </HBox>
+                </CustomListItem>
+            </List>
+        </content>
+    </Page>
+</mvc:View>
