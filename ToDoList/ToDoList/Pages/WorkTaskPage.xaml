@@ -1,0 +1,61 @@
+﻿<Page x:Class="ToDoList.WorkTaskPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ToDoList"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="WorkTaskPage">
+
+    <Grid>
+        <StackPanel Height="400" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="To są twoje zadania:" 
+                       FontSize="30"/>
+
+            
+
+            <TextBlock Text="Tytuł zadania: "
+                       Style="{StaticResource DefaultBlockStyle}"/>
+            
+            <TextBox Text="{Binding NewWorkTaskTitle,Mode=TwoWay}"
+                     Style="{StaticResource DefaultTextStyle}"/>
+            
+            <TextBlock Text="Opis zadania: "
+                       Style="{StaticResource DefaultBlockStyle}"/>
+            
+            <TextBox Text="{Binding NewWorkTaskDescription,Mode=TwoWay}"
+                     Style="{StaticResource DefaultTextStyle}"/>
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Command="{Binding AddNewTaskCommand}" 
+                        Style="{StaticResource DefaultButtonStyle}"
+                        Content="Dodaj"/>
+                <Button Command="{Binding DeleteSelectedTaskCommand}" 
+                        Grid.Column="1"
+                        Style="{StaticResource DefaultButtonStyle}"
+                        Content="Usuń"/>
+            </Grid>
+
+            <ScrollViewer Height="300" Margin="0 13">
+
+                <ItemsControl ItemsSource="{Binding WorkTasksList}" Margin="13">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:WorkTask />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+            </ScrollViewer>
+
+        </StackPanel>
+        
+    </Grid>
+</Page>
